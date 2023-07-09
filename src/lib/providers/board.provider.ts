@@ -66,7 +66,6 @@ const checkWinnerInLine = (board: Board): false | Player => {
 };
 
 const checkWinnerInDiagonal = (board: Board): false | Player => {
-  console.log("board", board);
   const indexes = [0, 1, 2] as const;
   const diagonal = indexes.map((index) => board[index][index]);
 
