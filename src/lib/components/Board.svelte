@@ -1,11 +1,7 @@
 <script lang="ts">
-  import type { Board } from "../model/board";
+  import type { Board } from "../../model/board";
 
-  let board: Board = [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0],
-  ];
+  export let board: Board;
 </script>
 
 <div>

@@ -48,7 +48,6 @@ describe("Board provider", () => {
       board,
     } as const;
 
-    // THIS SHOULD NOT THROW
     pickCell(props);
 
     expect(() => pickCell(props)).toThrowError("Cell is already taken");
