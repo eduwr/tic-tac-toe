@@ -1,5 +1,6 @@
 import type { Board } from "../../model/board";
-import { createBoard, hasWinner, pickCell } from "./board.provider";
+import type { Player } from "../../model/player";
+import { createBoard, hasWinner, pickCell, draw } from "./board.provider";
 
 describe("Board provider", () => {
   test("It should pass", () => {
@@ -129,21 +130,48 @@ describe("Board provider", () => {
   });
 
   test("hasWinner() - should return false when it doesn't have a winner", () => {
-    let board = createBoard();
-    const player = 2 as const;
-
-    const lines = [0, 1] as const;
-
-    lines.forEach((line) => {
-      board = pickCell({
-        player,
-        line,
-        column: line,
-        board,
-      });
-    });
+    let board: Board = [
+      [1, 2, 1],
+      [2, 2, 1],
+      [2, 1, 2],
+    ];
 
     let winner = hasWinner(board);
     expect(winner).toEqual(false);
+  });
+
+  test("draw() - should return FALSE when board is not fullfilled", () => {
+    let board: Board = [
+      [1, 2, 1],
+      [0, 1, 2],
+      [2, 1, 2],
+    ];
+
+    let result = draw(board);
+    expect(result).toEqual(false);
+  });
+
+  test("draw() - should return TRUE when board is fullfilled and has NOT a winner", () => {
+    let board: Board = [
+      [1, 2, 1],
+      [2, 1, 2],
+      [2, 1, 2],
+    ];
+
+    let result = draw(board);
+
+    expect(result).toEqual(true);
+  });
+
+  test("draw() - should return FALSE when board is fullfilled and HAS a winner", () => {
+    let board: Board = [
+      [2, 2, 1],
+      [2, 1, 2],
+      [2, 1, 1],
+    ];
+
+    let result = draw(board);
+
+    expect(result).toEqual(false);
   });
 });

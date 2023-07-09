@@ -106,3 +106,15 @@ export const hasWinner = (board: Board): false | Player => {
 
   return false;
 };
+
+export const draw = (board: Board): boolean => {
+  const winner = hasWinner(board);
+
+  if (!winner) {
+    return board
+      .map((line) => line.every((cell) => cell !== 0))
+      .every((line) => line === true);
+  }
+
+  return false;
+};
